@@ -1,0 +1,15 @@
+.tieu-de {
+  background: #d91515;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  padding: 5px;
+}
+.text-tieu-thuyet {
+  color: rgb(64, 4, 246);
+  font-weight: bold;
+}
+.text-truyen-tranh {
+  color: red;
+  font-weight: bold;
+}
