@@ -50,7 +50,8 @@ if (session_id() === '') {
         */
       // 2.1. Chuẩn bị câu truy vấn $sql
       $truyen_id = $_GET['truyen_id'];
-      $chuong_id = $_GET['chuong_id'];
+      $chuong_so = $_GET['chuong_so'];
+      $tong_so_chuong = $_GET['tong_so_chuong'];
 
       $sqlDanhSachTruyen = <<<EOT
       SELECT truyen_id, truyen_ma, truyen_ten, truyen_hinhdaidien, truyen_loai, truyen_theloai, truyen_tacgia, truyen_mota_ngan, truyen_ngaydang
@@ -90,7 +91,7 @@ EOT;
       SELECT chuong_id, chuong_so, chuong_ten, chuong_noidung, truyen_id
       FROM chuong
       WHERE truyen_id = $truyen_id
-        AND chuong_id = $chuong_id;
+        AND chuong_so = $chuong_so;
 EOT;
 
       // 3.2. Thực thi câu truy vấn SQL để lấy về dữ liệu
@@ -101,9 +102,15 @@ EOT;
       // Nhưng hiện tại chúng ta đã chắn chắn SELECT theo Khóa chính (Primary key) => nên không cần phải sử dụng vòng lặp
       $dataChuongRow = [];
       $dataChuongRow = mysqli_fetch_array($resultChuong, MYSQLI_ASSOC); // 1 record
+
+      // Nếu tìm không thấy dữ liệu thì Không xử lý gì nữa...
       if(is_null($dataChuongRow)) {
+        echo 'Tập truyện bạn tìm không tồn tại...';
         die;
       }
+
+      // Nếu tìm thấy thì lưu thông tin Chương ID
+      $chuong_id = $dataChuongRow['chuong_id'];
       /* --- End Truy vấn dữ liệu Chương/Tập cụ thể của Truyện --- */
 
       /* --- 
@@ -140,25 +147,25 @@ EOT;
 
     <div class="container">
       <!-- THÔNG TIN CHƯƠNG/TẬP START -->
-      <div class="row">
+      <div class="row mb-2">
         <div class="col text-center">
           <h3><?= $dataTruyenRow['truyen_ten'] ?></h3>
           <h4>Chương <?= $dataChuongRow['chuong_so'] ?> - <?= $dataChuongRow['chuong_ten'] ?></h4>
           <?php
-          // Tính toán Chương trước ID = chương hiện tại +/- 1
-          $chuongTruocId = $dataChuongRow['chuong_so'] - 1;
-          $chuongSauId = $dataChuongRow['chuong_so'] + 1;
+          // Tính toán Chương trước Số = chương hiện tại +/- 1
+          $chuongTruocSo = $dataChuongRow['chuong_so'] - 1;
+          $chuongSauSo = $dataChuongRow['chuong_so'] + 1;
 
           // Set trạng thái Disabled nếu Số Chương/Tập tính toán không hợp lý
-          $trangThaiChuongTruoc = ($chuongTruocId <= 0) ? 'disabled' : '';
-          $trangThaiChuongSau = ($chuongSauId >= 0) ? 'disabled' : '';
+          $trangThaiChuongTruoc = ($chuongTruocSo <= 0) ? 'disabled' : '';
+          $trangThaiChuongSau = ($chuongSauSo > $tong_so_chuong) ? 'disabled' : '';
           ?>
-          <a href="noi-dung.php?truyen_id=<?= $truyen_id ?>&chuong_id=<?= $chuongTruocId ?>" 
+          <a href="noi-dung.php?truyen_id=<?= $truyen_id ?>&chuong_so=<?= $chuongTruocSo ?>&tong_so_chuong=<?= $tong_so_chuong ?>" 
             class="btn btn-primary <?= $trangThaiChuongTruoc ?>">Chương trước</a>
 
           <a href="chi-tiet.php?truyen_id=<?= $truyen_id ?>" class="btn btn-outline-success">Quay về Danh sách</a>
 
-          <a href="noi-dung.php?truyen_id=<?= $truyen_id ?>&chuong_id=<?= $chuongSauId ?>" 
+          <a href="noi-dung.php?truyen_id=<?= $truyen_id ?>&chuong_so=<?= $chuongSauSo ?>&tong_so_chuong=<?= $tong_so_chuong ?>" 
             class="btn btn-primary <?= $trangThaiChuongSau ?>">Chương sau</a>
         </div>
       </div>

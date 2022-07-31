@@ -77,12 +77,13 @@ EOT;
       SELECT chuong_id, chuong_so, chuong_ten, chuong_noidung, truyen_id
       FROM chuong
       WHERE truyen_id = $truyen_id
+      ORDER BY chuong_so ASC;
 EOT;
 
       // 3.2. Thực thi câu truy vấn SQL để lấy về dữ liệu
       $resultChuong = mysqli_query($conn, $sqlDanhSachChuong);
 
-      // 4. Khi thực thi các truy vấn dạng SELECT, dữ liệu lấy về cần phải phân tích để sử dụng
+      // 3.3. Khi thực thi các truy vấn dạng SELECT, dữ liệu lấy về cần phải phân tích để sử dụng
       // Thông thường, chúng ta sẽ sử dụng vòng lặp while để duyệt danh sách các dòng dữ liệu được SELECT
       // Ta sẽ tạo 1 mảng array để chứa các dữ liệu được trả về
       $dataChuong = [];
@@ -137,7 +138,11 @@ EOT;
         <div class="col">
           <ul>
             <?php foreach($dataChuong as $chuong): ?>
-              <li><a href="noi-dung.php?truyen_id=<?= $truyen_id ?>&chuong_id=<?= $chuong['chuong_id'] ?>">Chương <?= $chuong['chuong_so'] ?> - <?= $chuong['chuong_ten'] ?></a></li>
+              <li>
+                <a href="noi-dung.php?truyen_id=<?= $truyen_id ?>&chuong_so=<?= $chuong['chuong_so'] ?>&tong_so_chuong=<?= count($dataChuong) ?>">
+                  Chương <?= $chuong['chuong_so'] ?> - <?= $chuong['chuong_ten'] ?>
+                </a>
+              </li>
             <?php endforeach; ?>
           </ul>
         </div>

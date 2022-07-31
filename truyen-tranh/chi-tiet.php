@@ -77,6 +77,7 @@ EOT;
       SELECT chuong_id, chuong_so, chuong_ten, chuong_noidung, truyen_id
       FROM chuong
       WHERE truyen_id = $truyen_id
+      ORDER BY chuong_so ASC;
 EOT;
 
       // 3.2. Thực thi câu truy vấn SQL để lấy về dữ liệu
@@ -137,7 +138,11 @@ EOT;
         <div class="col">
           <ul>
             <?php foreach($dataChuong as $chuong): ?>
-              <li><a href="noi-dung.php?truyen_id=<?= $truyen_id ?>&chuong_id=<?= $chuong['chuong_id'] ?>">Chương <?= $chuong['chuong_so'] ?> - <?= $chuong['chuong_ten'] ?></a></li>
+              <li>
+                <a href="noi-dung.php?truyen_id=<?= $truyen_id ?>&chuong_so=<?= $chuong['chuong_so'] ?>&tong_so_chuong=<?= count($dataChuong) ?>">
+                  Tập <?= $chuong['chuong_so'] ?> - <?= $chuong['chuong_ten'] ?>
+                </a>
+              </li>
             <?php endforeach; ?>
           </ul>
         </div>

@@ -42,7 +42,7 @@ if (session_id() === '') {
             </div>
             <div class="row mt-2">
                 <div class="col col-md-12">
-                    <h1 class="text-center">Giới thiệu</h1>
+                    <h1 class="tieu-de">Giới thiệu</h1>
                 </div>
             </div>
             <div class="row mt-2">

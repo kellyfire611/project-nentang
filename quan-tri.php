@@ -29,22 +29,8 @@ if (session_id() === '') {
     <main role="main" class="mb-2">
         <!-- Block content -->
         <div class="container mt-2">
-            <h1 class="text-center">Nền tảng - Hành trang tới Tương lai</h1>
-            <div class="row">
-                <div class="col col-md-12">
-                    <h5 class="text-center">Cung cấp kiến thức nền tảng về Lập trình, Thiết kế Web, Cơ sở dữ liệu</h5>
-                    <h5 class="text-center">Giúp các bạn có niềm tin, hành trang kiến thức vững vàng trên con đường trở thành
-                        Nhà phát triển Phần mềm</h5>
-                    <div class="text-center">
-                        <a href="https://nentang.vn" class="btn btn-primary btn-lg">Ghé thăm Nền tảng <i class="fa fa-forward" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-2">
-                <div class="col col-md-12">
-                    <h1 class="tieu-de">Liên hệ</h1>
-                </div>
-            </div>
+          <h1 class="text-center">Nền tảng - Hành trang tới Tương lai</h1>
+          <h1 class="tieu-de">Quản trị Hệ thống</h1>
         </div>
         <!-- End block content -->
     </main>
