@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/project-nentang/quan-tri.php">Quản trị</a>
+        <a class="nav-link" href="/project-nentang/quan-ly">Quản lý</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/project-nentang/gioi-thieu.php">Giới thiệu</a>
