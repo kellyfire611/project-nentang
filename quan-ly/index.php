@@ -42,6 +42,12 @@ if (session_id() === '') {
             <li><a href="/project-nentang/quan-ly/truyen-tranh/them.php">Thêm mới Truyện tranh</a></li>
           </ol>
         </li>
+        <li>Tiểu thuyết
+          <ol>
+            <li><a href="/project-nentang/quan-ly/tieu-thuyet/danh-sach.php">Danh sách Tiểu thuyết</a></li>
+            <li><a href="/project-nentang/quan-ly/tieu-thuyet/them.php">Thêm mới Tiểu thuyết</a></li>
+          </ol>
+        </li>
       </ul>
     </div>
     <!-- End block content -->

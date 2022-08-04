@@ -75,17 +75,21 @@ EOT;
     </div>
 
     <div class="container">
-      <!-- Danh sách TRUYỆN TRANH START -->
+      <!-- Danh sách TIỂU THUYẾT START -->
       <div class="row">
         <div class="col">
-          <h3 class="text-tieu-thuyet">Danh sách Truyện Tranh</h3>
+          <h3 class="text-tieu-thuyet">Danh sách Tiểu Thuyết</h3>
         </div>
       </div>
       <div class="row">
         <div class="col">
+          <!-- Đường link chuyển sang trang Thêm mới -->
+          <a href="them.php" class="btn btn-primary mb-2">Thêm mới</a>
+
           <table class="table table-bordered">
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Mã</th>
                 <th>Tên</th>
                 <th>Hình đại diện</th>
@@ -93,27 +97,39 @@ EOT;
                 <th>Tác giả</th>
                 <th>Mô tả ngắn</th>
                 <th>Ngày đăng</th>
+                <th>Hành động</th>
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($dataDanhSachTieuThuyet as $tieuthuyet) : ?>
-              <tr>
-                <td><?= $tieuthuyet['truyen_ma'] ?></td>
-                <td><?= $tieuthuyet['truyen_ten'] ?></td>
-                <td>
-                  <img src="/project-nentang/assets/uploads/truyen-tranh/<?= $tieuthuyet['truyen_hinhdaidien'] ?>" class="img-fluid" alt="">
-                </td>
-                <td><?= $tieuthuyet['truyen_theloai'] ?></td>
-                <td><?= $tieuthuyet['truyen_tacgia'] ?></td>
-                <td><?= $tieuthuyet['truyen_mota_ngan'] ?></td>
-                <td><?= $tieuthuyet['truyen_ngaydang'] ?></td>
-              </tr>
+              <?php foreach ($dataDanhSachTieuThuyet as $truyentranh) : ?>
+                <tr>
+                  <td><?= $truyentranh['truyen_id'] ?></td>
+                  <td><?= $truyentranh['truyen_ma'] ?></td>
+                  <td><?= $truyentranh['truyen_ten'] ?></td>
+                  <td>
+                    <img src="/project-nentang/assets/uploads/tieu-thuyet/<?= $truyentranh['truyen_hinhdaidien'] ?>" class="img-fluid" alt="">
+                  </td>
+                  <td><?= $truyentranh['truyen_theloai'] ?></td>
+                  <td><?= $truyentranh['truyen_tacgia'] ?></td>
+                  <td><?= $truyentranh['truyen_mota_ngan'] ?></td>
+                  <td><?= $truyentranh['truyen_ngaydang'] ?></td>
+                  <td>
+                    <!-- Nút sửa, bấm vào sẽ hiển thị form hiệu chỉnh thông tin dựa vào khóa chính `truyen_id` -->
+                    <a href="sua.php?truyen_id=<?= $truyentranh['truyen_id'] ?>" class="btn btn-warning">
+                      Sửa
+                    </a>
+                    <!-- Nút xóa, bấm vào sẽ xóa thông tin dựa vào khóa chính `truyen_id` -->
+                    <button type="button" class="btn btn-danger btnDelete" data-truyen_id="<?= $truyentranh['truyen_id'] ?>">
+                      Xóa
+                    </button>
+                  </td>
+                </tr>
               <?php endforeach; ?>
             </tbody>
           </table>
         </div>
       </div>
-      <!-- Danh sách TRUYỆN TRANH END -->
+      <!-- Danh sách TIỂU THUYẾT END -->
     </div>
     <!-- End block content -->
   </main>
@@ -126,7 +142,19 @@ EOT;
   <?php include_once(__DIR__ . '/../../frontend/layouts/scripts.php'); ?>
 
   <!-- Các file Javascript sử dụng riêng cho trang này, liên kết tại đây -->
+  <script>
+  $('.btnDelete').on('click', function(e) {
+    // Lấy giá trị của thuộc tính "data-truyen_id" của nút mà người dùng đang click
+    var truyen_id = $(this).attr('data-truyen_id');
 
+    // Hiển thị cảnh báo
+    var xacNhanXoa = confirm('Bạn có chắc chắn muốn xóa?');
+    if(xacNhanXoa == true) { // Người dùng đã chọn Yes
+      // Điều hướng đến trang xoa.php với tham số truyen_id được truyền theo request GET
+      location.href = 'xoa.php?truyen_id=' + truyen_id;
+    }
+  });
+  </script>
 </body>
 
 </html>
