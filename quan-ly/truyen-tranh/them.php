@@ -87,6 +87,7 @@ if (session_id() === '') {
                 <textarea class="form-control" id="truyen_mota_ngan" name="truyen_mota_ngan" placeholder="Mô tả ngắn về truyện tranh" rows="10"></textarea>
               </div>
             </div>
+            <a href="danh-sach.php" class="btn btn-secondary">Quay về</a>
             <button class="btn btn-primary" name="btnLuu">Lưu dữ liệu</button>
           </form>
         </div>

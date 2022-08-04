@@ -142,7 +142,19 @@ EOT;
   <?php include_once(__DIR__ . '/../../frontend/layouts/scripts.php'); ?>
 
   <!-- Các file Javascript sử dụng riêng cho trang này, liên kết tại đây -->
+  <script>
+  $('.btnDelete').on('click', function(e) {
+    // Lấy giá trị của thuộc tính "data-truyen_id" của nút mà người dùng đang click
+    var truyen_id = $(this).attr('data-truyen_id');
 
+    // Hiển thị cảnh báo
+    var xacNhanXoa = confirm('Bạn có chắc chắn muốn xóa?');
+    if(xacNhanXoa == true) { // Người dùng đã chọn Yes
+      // Điều hướng đến trang xoa.php với tham số truyen_id được truyền theo request GET
+      location.href = 'xoa.php?truyen_id=' + truyen_id;
+    }
+  });
+  </script>
 </body>
 
 </html>
