@@ -257,13 +257,13 @@ if (session_id() === '') {
             'msg' => 'Mô tả Truyện phải có ít nhất 3 ký tự'
           ];
         }
-        // maxlength 255
-        else if (!empty($truyen_mota_ngan) && strlen($truyen_mota_ngan) > 255) {
+        // maxlength 65000
+        else if (!empty($truyen_mota_ngan) && strlen($truyen_mota_ngan) > 65000) {
           $errors['truyen_mota_ngan'][] = [
             'rule' => 'maxlength',
-            'rule_value' => 255,
+            'rule_value' => 65000,
             'value' => $truyen_mota_ngan,
-            'msg' => 'Mô tả Truyện không được vượt quá 255 ký tự'
+            'msg' => 'Mô tả Truyện không được vượt quá 65000 ký tự'
           ];
         }
 

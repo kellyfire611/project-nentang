@@ -42,10 +42,28 @@ if (session_id() === '') {
             <li><a href="/project-nentang/quan-ly/truyen-tranh/them.php">Thêm mới Truyện tranh</a></li>
           </ol>
         </li>
+        <li>Tập Truyện tranh
+          <ol>
+            <li><a href="/project-nentang/quan-ly/truyen-tranh-tap/danh-sach.php">Danh sách Tập Truyện tranh</a></li>
+            <li><a href="/project-nentang/quan-ly/truyen-tranh-tap/them.php">Thêm mới Tập Truyện tranh</a></li>
+          </ol>
+        </li>
+        <li>Tập Hình ảnh Truyện tranh
+          <ol>
+            <li><a href="/project-nentang/quan-ly/truyen-tranh-tap-hinh-anh/danh-sach.php">Danh sách Tập Hình ảnh Truyện tranh</a></li>
+            <li><a href="/project-nentang/quan-ly/truyen-tranh-tap-hinh-anh/them.php">Thêm mới Tập Hình ảnh Truyện tranh</a></li>
+          </ol>
+        </li>
         <li>Tiểu thuyết
           <ol>
             <li><a href="/project-nentang/quan-ly/tieu-thuyet/danh-sach.php">Danh sách Tiểu thuyết</a></li>
             <li><a href="/project-nentang/quan-ly/tieu-thuyet/them.php">Thêm mới Tiểu thuyết</a></li>
+          </ol>
+        </li>
+        <li>Chương Tiểu thuyết
+          <ol>
+            <li><a href="/project-nentang/quan-ly/tieu-thuyet-chuong/danh-sach.php">Danh sách Chương Tiểu thuyết</a></li>
+            <li><a href="/project-nentang/quan-ly/tieu-thuyet-chuong/them.php">Thêm mới Chương Tiểu thuyết</a></li>
           </ol>
         </li>
       </ul>

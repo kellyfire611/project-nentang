@@ -291,13 +291,13 @@ if (session_id() === '') {
             'msg' => 'Mô tả Truyện phải có ít nhất 3 ký tự'
           ];
         }
-        // maxlength 255
-        else if (!empty($truyen_mota_ngan) && strlen($truyen_mota_ngan) > 255) {
+        // maxlength 65000
+        else if (!empty($truyen_mota_ngan) && strlen($truyen_mota_ngan) > 65000) {
           $errors['truyen_mota_ngan'][] = [
             'rule' => 'maxlength',
-            'rule_value' => 255,
+            'rule_value' => 65000,
             'value' => $truyen_mota_ngan,
-            'msg' => 'Mô tả Truyện không được vượt quá 255 ký tự'
+            'msg' => 'Mô tả Truyện không được vượt quá 65000 ký tự'
           ];
         }
 
@@ -341,13 +341,14 @@ if (session_id() === '') {
                 ];
                 break;
               case UPLOAD_ERR_NO_FILE:
+                // Không ràng buộc phải chọn file
                 // No file was uploaded
-                $errors['truyen_hinhdaidien'][] = [
-                  'rule' => 'no_file',
-                  'rule_value' => true,
-                  'value' => $_FILES["truyen_hinhdaidien"]["tmp_name"],
-                  'msg' => 'Bạn chưa chọn file để upload...'
-                ];
+                // $errors['truyen_hinhdaidien'][] = [
+                //   'rule' => 'no_file',
+                //   'rule_value' => true,
+                //   'value' => $_FILES["truyen_hinhdaidien"]["tmp_name"],
+                //   'msg' => 'Bạn chưa chọn file để upload...'
+                // ];
                 break;
               case UPLOAD_ERR_NO_TMP_DIR:
                 // No /tmp dir to write to
@@ -426,31 +427,36 @@ if (session_id() === '') {
         && (!isset($errors) || (empty($errors))) // Nếu biến $errors không tồn tại Hoặc giá trị của biến $errors rỗng
       ) {
         // VALIDATE dữ liệu đã hợp lệ
-        // Đường dẫn để chứa thư mục upload trên ứng dụng web của chúng ta. Các bạn có thể tùy chỉnh theo ý các bạn.
-        // Ví dụ: các file upload sẽ được lưu vào thư mục "assets/uploads/..."
-        $upload_dir = __DIR__ . "/../../assets/uploads/truyen-tranh/";
+        $tentaptin = $truyenRow['truyen_hinhdaidien'];
 
-        // Xóa file cũ để tránh rác trong thư mục UPLOADS
-        // Kiểm tra nếu file có tổn tại thì xóa file đi
-        $old_file = $upload_dir . $truyenRow['truyen_hinhdaidien'];
-        if (file_exists($old_file)) {
-          // Hàm unlink(filepath) dùng để xóa file trong PHP
-          unlink($old_file);
+        // Nếu người dùng có chọn file hình mới -> và quá trình upload hình thành công
+        if(isset($_FILES['truyen_hinhdaidien']) && $_FILES['truyen_hinhdaidien']['error'] == 0) {
+          // Đường dẫn để chứa thư mục upload trên ứng dụng web của chúng ta. Các bạn có thể tùy chỉnh theo ý các bạn.
+          // Ví dụ: các file upload sẽ được lưu vào thư mục "assets/uploads/..."
+          $upload_dir = __DIR__ . "/../../assets/uploads/truyen-tranh/";
+
+          // Xóa file cũ để tránh rác trong thư mục UPLOADS
+          // Kiểm tra nếu file có tổn tại thì xóa file đi
+          $old_file = $upload_dir . $truyenRow['truyen_hinhdaidien'];
+          if (file_exists($old_file)) {
+            // Hàm unlink(filepath) dùng để xóa file trong PHP
+            unlink($old_file);
+          }
+
+          // Để tránh trường hợp có 2 người dùng cùng lúc upload tập tin trùng tên nhau
+          // Ví dụ:
+          // - Người 1: upload tập tin hình ảnh tên `hoahong.jpg`
+          // - Người 2: cũng upload tập tin hình ảnh tên `hoahong.jpg`
+          // => dẫn đến tên tin trong thư mục chỉ còn lại tập tin người dùng upload cuối cùng
+          // Cách giải quyết đơn giản là chúng ta sẽ ghép thêm ngày giờ vào tên file
+          $tentaptin = date('YmdHis') . '_' . $_FILES['truyen_hinhdaidien']['name']; //20200530154922_hoahong.jpg
+
+          // Tiến hành di chuyển file từ thư mục tạm trên server vào thư mục chúng ta muốn chứa các file uploads
+          // Ví dụ: move file từ C:\xampp\tmp\php6091.tmp -> C:/xampp/htdocs/project-nentang/assets/uploads/hoahong.jpg
+          // var_dump($_FILES['truyen_hinhdaidien']['tmp_name']);
+          // var_dump($upload_dir . $tentaptin);
+          move_uploaded_file($_FILES['truyen_hinhdaidien']['tmp_name'], $upload_dir . $tentaptin);
         }
-
-        // Để tránh trường hợp có 2 người dùng cùng lúc upload tập tin trùng tên nhau
-        // Ví dụ:
-        // - Người 1: upload tập tin hình ảnh tên `hoahong.jpg`
-        // - Người 2: cũng upload tập tin hình ảnh tên `hoahong.jpg`
-        // => dẫn đến tên tin trong thư mục chỉ còn lại tập tin người dùng upload cuối cùng
-        // Cách giải quyết đơn giản là chúng ta sẽ ghép thêm ngày giờ vào tên file
-        $tentaptin = date('YmdHis') . '_' . $_FILES['truyen_hinhdaidien']['name']; //20200530154922_hoahong.jpg
-
-        // Tiến hành di chuyển file từ thư mục tạm trên server vào thư mục chúng ta muốn chứa các file uploads
-        // Ví dụ: move file từ C:\xampp\tmp\php6091.tmp -> C:/xampp/htdocs/project-nentang/assets/uploads/hoahong.jpg
-        // var_dump($_FILES['truyen_hinhdaidien']['tmp_name']);
-        // var_dump($upload_dir . $tentaptin);
-        move_uploaded_file($_FILES['truyen_hinhdaidien']['tmp_name'], $upload_dir . $tentaptin);
 
         // 4. Chuẩn bị câu lệnh SQL
         $sqlThemMoiTruyen = <<<EOT
