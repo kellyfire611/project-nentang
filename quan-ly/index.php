@@ -48,12 +48,9 @@ if (session_id() === '') {
             <li><a href="/project-nentang/quan-ly/truyen-tranh-tap/them.php">Thêm mới Tập Truyện tranh</a></li>
           </ol>
         </li>
-        <li>Tập Hình ảnh Truyện tranh
-          <ol>
-            <li><a href="/project-nentang/quan-ly/truyen-tranh-tap-hinh-anh/danh-sach.php">Danh sách Tập Hình ảnh Truyện tranh</a></li>
-            <li><a href="/project-nentang/quan-ly/truyen-tranh-tap-hinh-anh/them.php">Thêm mới Tập Hình ảnh Truyện tranh</a></li>
-          </ol>
-        </li>
+      </ul>
+      <h2>Các chức năng Quản lý Tiểu thuyết</h2>
+      <ul>
         <li>Tiểu thuyết
           <ol>
             <li><a href="/project-nentang/quan-ly/tieu-thuyet/danh-sach.php">Danh sách Tiểu thuyết</a></li>

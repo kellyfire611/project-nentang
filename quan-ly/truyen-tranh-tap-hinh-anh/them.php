@@ -42,19 +42,17 @@ if (session_id() === '') {
       </div>
       <div class="row">
         <div class="col">
-            <form name="frmThemMoi" id="frmThemMoi" method="post" action="xuly-upload.php" enctype="multipart/form-data" class="dropzone">
-                <input type="hidden" name="chuong_id" id="chuong_id" value="<?= $_GET['chuong_id'] ?>" />
-                <div class="form-group">
-                    <label for="">Tên tập truyện</label>
-                    <input type="text" name="chuong_ten" id="chuong_ten" value="<?= $_GET['chuong_ten'] ?>" class="form-control" disabled />
-                </div>
-                <div class="form-group">
-                    <input type="file" name="chuong_hinhanh_tenhinh" />
-                </div>
-            </form>
+          <form name="frmThemMoi" id="frmThemMoi" method="post" action="xuly-upload.php" enctype="multipart/form-data" class="dropzone">
+            <input type="hidden" name="chuong_id" id="chuong_id" value="<?= $_GET['chuong_id'] ?>" />
+            <div class="form-group">
+              <label for="">Tên tập truyện</label>
+              <input type="text" name="chuong_ten" id="chuong_ten" value="<?= $_GET['chuong_ten'] ?>" class="form-control" disabled />
+            </div>
+          </form>
+          <a href="/project-nentang/quan-ly/truyen-tranh-tap/danh-sach.php" class="btn btn-secondary">Quay về Danh sách Tập truyện tranh</a>
         </div>
-    </div>
-    <!-- End block content -->
+      </div>
+      <!-- End block content -->
   </main>
 
   <!-- footer -->
@@ -71,14 +69,11 @@ if (session_id() === '') {
     // Note that the name "frmThemMoi" is the camelized
     // id of the form.
     Dropzone.options.frmThemMoi = {
-        paramName: "file", // The name that will be used to transfer the file
-        maxFilesize: 2, // MB
-        accept: function(file, done) {
-        if (file.name == "justinbieber.jpg") {
-            done("Naha, you don't.");
-        }
-        else { done(); }
-        }
+      paramName: "chuong_hinhanh_tenhinh", // The name that will be used to transfer the file
+      maxFilesize: 2, // MB
+      accept: function(file, done) {
+        done();
+      }
     };
   </script>
 

@@ -4,9 +4,9 @@
 // Ví dụ: các file upload sẽ được lưu vào thư mục "assets/uploads/..."
 $upload_dir = __DIR__ . "/../../assets/uploads/truyen-tranh/";
 
-$tentaptin = date('YmdHis') . '_' . $_FILES['file']['name'];
+$tentaptin = date('YmdHis') . '_' . $_FILES['chuong_hinhanh_tenhinh']['name'];
 
-move_uploaded_file($_FILES['file']['tmp_name'], $upload_dir . $tentaptin);
+move_uploaded_file($_FILES['chuong_hinhanh_tenhinh']['tmp_name'], $upload_dir . $tentaptin);
 
 // 1. Mở kết nối
 include_once(__DIR__ . '/../../dbconnect.php');

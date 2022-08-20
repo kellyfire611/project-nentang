@@ -72,7 +72,7 @@ if (session_id() === '') {
           ?>
 
           <!-- Form cho phép người dùng upload file lên Server bắt buộc phải có thuộc tính enctype="multipart/form-data" -->
-          <form name="frmThemMoi" id="frmThemMoi" method="post" action="" enctype="multipart/form-data">
+          <form name="frmSua" id="frmSua" method="post" action="" enctype="multipart/form-data">
             <div class="form-row">
               <div class="form-group col">
                 <label for="truyen_ma">Mã truyện tranh</label>

@@ -110,6 +110,12 @@ EOT;
                     <button type="button" class="btn btn-danger btnDelete" data-chuong_id="<?= $tap['chuong_id'] ?>">
                       Xóa
                     </button>
+
+                    <!-- Nút Thêm hình ảnh cho tập Truyện dựa vào khóa chính `chuong_id` -->
+                    <a href="/project-nentang/quan-ly/truyen-tranh-tap-hinh-anh/them.php?chuong_id=<?= $tap['chuong_id'] ?>&chuong_ten=<?= $tap['chuong_ten'] ?>" class="btn btn-info">Thêm hình ảnh</a>
+
+                    <!-- Nút Xem danh sách hình ảnh cho tập Truyện dựa vào khóa chính `chuong_id` -->
+                    <a href="/project-nentang/quan-ly/truyen-tranh-tap-hinh-anh/danh-sach.php?chuong_id=<?= $tap['chuong_id'] ?>&chuong_ten=<?= $tap['chuong_ten'] ?>" class="btn btn-success">Danh sách hình ảnh</a>
                   </td>
                 </tr>
               <?php endforeach; ?>
