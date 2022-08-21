@@ -145,14 +145,14 @@ if (session_id() === '') {
           ];
         }
 
-        // -- Validate số Tập
+        // -- Validate số Chương
         // required
         if (empty($chuong_so)) {
           $errors['chuong_so'][] = [
             'rule' => 'required',
             'rule_value' => true,
             'value' => $chuong_so,
-            'msg' => 'Vui lòng nhập số Tập'
+            'msg' => 'Vui lòng nhập số Chương'
           ];
         }
 
@@ -163,7 +163,7 @@ if (session_id() === '') {
             'rule' => 'required',
             'rule_value' => true,
             'value' => $chuong_ten,
-            'msg' => 'Vui lòng nhập tên Tập'
+            'msg' => 'Vui lòng nhập tên Chương'
           ];
         }
         // minlength 3
@@ -192,7 +192,7 @@ if (session_id() === '') {
             'rule' => 'required',
             'rule_value' => true,
             'value' => $chuong_noidung,
-            'msg' => 'Vui lòng nhập nội dung Tập'
+            'msg' => 'Vui lòng nhập nội dung Chương'
           ];
         }
       }
